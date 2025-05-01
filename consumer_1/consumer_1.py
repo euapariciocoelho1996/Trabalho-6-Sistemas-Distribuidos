@@ -69,7 +69,7 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(host))
 channel = connection.channel()
 
 channel.exchange_declare(exchange='logs_topic', exchange_type='topic')
-channel.queue_declare(queue='queue_face')
+channel.queue_declare(queue='queue_face') # channel.queue_declare(queue='queue_face', durable=True) # Declara a exchange e as filas, com persistência
 channel.queue_bind(exchange='logs_topic', queue='queue_face', routing_key='face')
 
 def callback(ch, method, properties, body):

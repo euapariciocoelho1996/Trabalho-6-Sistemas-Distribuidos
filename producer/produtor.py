@@ -53,7 +53,7 @@ while True:
                     exchange='logs_topic',
                     routing_key=routing_key,
                     body=image_data,
-                    properties=pika.BasicProperties(headers={'filename': image_file})
+                    properties=pika.BasicProperties(headers={'filename': image_file}) # headers={'filename': image_file}, delivery_mode=2,  # Torna a mensagem persistente
                 )
 
                 print(f"[x] Enviada '{image_file}' pela rota '{routing_key}'")
