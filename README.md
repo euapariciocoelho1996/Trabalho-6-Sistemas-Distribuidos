@@ -1,5 +1,3 @@
----
-
 # 📦 Sistema Distribuído com RabbitMQ e IA nos Consumidores
 
 Este projeto implementa um sistema distribuído composto por **4 containers**: um produtor de imagens, dois consumidores com IA embutida (reconhecimento facial e brasão de time), e um broker de mensagens **RabbitMQ**. A comunicação entre os serviços ocorre via filas, utilizando **Exchange do tipo `topic`**.
