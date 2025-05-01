@@ -1,5 +1,3 @@
-Claro! Abaixo está um exemplo de `README.md` **bem detalhado**, cobrindo os principais aspectos da **Atividade 6 - Sistema de Carga com IA embutida nos Consumidores, Containers e RabbitMQ**, conforme sua implementação:
-
 ---
 
 # 📦 Sistema Distribuído com RabbitMQ e IA nos Consumidores
@@ -65,6 +63,8 @@ Trabalho-6-Sistemas-Distribuidos/
 │   ├── Dockerfile                 # Dockerfile para build do container consumer_2
 │   └── requirements.txt           # Dependências da IA de times
 │
+├── Prints/                        # Imagens do Funcionamento do Proejeto
+│   
 ├── producer/
 │   ├── produtor.py                # Envia imagens com routing key 'face' ou 'time'
 │   ├── imagens/                   # Contém imagens como face_001.jpg, time_001.jpg
