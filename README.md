@@ -155,6 +155,37 @@ Fila com consumidores conectados:
 ![Queues](https://github.com/euapariciocoelho1996/Trabalho-6-Sistemas-Distribuidos/blob/main/prints/queues.png)
 
 #### Explicação dos Campos
+Virtual host (VHost) – Identifica o ambiente ao qual a fila pertence. No RabbitMQ, os Virtual Hosts são usados para separar diferentes sistemas de mensagens. Nesta imagem, todas as filas pertencem ao "/" (vhost padrão).
+ 
+ Name – Nome da fila. Na imagem, temos queue_face e queue_time, indicando que uma gerencia mensagens relacionadas a faces e a outra a times.
+ 
+ Type – Tipo da fila. Todas são do tipo "classic", que é o modo padrão do RabbitMQ.
+ 
+ Features – Indica recursos especiais da fila, como "mirroring" ou "priority queues". Neste caso, não há configurações extras.
+ 
+ State – Mostra o estado da fila. O indicador verde "running" significa que a fila está ativa e operacional.
+ 
+ Messages – Exibe três colunas de contagem de mensagens:
+ 
+ Ready – Mensagens disponíveis para consumo imediato (0 em ambas as filas).
+ 
+ Unacked – Mensagens que foram entregues aos consumidores, mas ainda não foram confirmadas (ack). A fila queue_face tem 4, e queue_time tem 12, indicando processamento pendente.
+ 
+ Total – Soma das mensagens Ready + Unacked (4 para queue_face, 12 para queue_time).
+ 
+ Message rates – Taxas de mensagens em eventos específicos:
+ 
+ incoming – Velocidade de mensagens chegando à fila (queue_face: 2.6 msg/s, queue_time: 2.2 msg/s).
+ 
+ deliver / get – Taxa de mensagens entregues aos consumidores (queue_face: 2.6 msg/s, queue_time: 2.2 msg/s).
+ 
+ ack – Taxa de confirmações (ack) feitas pelos consumidores (queue_face: 1.8 msg/s, queue_time: 2.0 msg/s).
+
+### 📊 Overview de desempenho
+Visualização geral da troca de mensagens:
+![Queues Overview](https://github.com/euapariciocoelho1996/Trabalho-6-Sistemas-Distribuidos/blob/main/prints/queues-overview.png)
+
+#### Gráfico de Mensagens Enfileiradas (Queued messages last minute)
 Publicar (Publish) 🟡 – Número de mensagens enviadas para a fila.
 
 Entregar (manual ack) 🔵 – Mensagens entregues a consumidores que reconhecem manualmente.
@@ -168,30 +199,6 @@ Reentregue (Redelivered) 🟣 – Mensagens reenviadas para consumidores após f
 Obter (auto ack) ⚫ – Mensagens recebidas automaticamente pelos consumidores.
 
 Obter (vazio) 🟠 – Tentativas de buscar mensagens na fila, mas sem sucesso.
-
-### 📊 Overview de desempenho
-Visualização geral da troca de mensagens:
-![Queues Overview](https://github.com/euapariciocoelho1996/Trabalho-6-Sistemas-Distribuidos/blob/main/prints/queues-overview.png)
-
-#### Gráfico de Mensagens Enfileiradas (Queued messages last minute)
-Este gráfico mostra a variação da quantidade de mensagens na fila ao longo do último minuto:
-
-`Linha vermelha ("Unacked")`: Representa mensagens que foram entregues aos consumidores, mas ainda não receberam confirmação (ack). Neste caso, há 59 mensagens pendentes, o que indica um fluxo lento no processamento.
-
-`Linha azul ("Ready")`: Representa mensagens prontas para consumo imediato. O valor é 0, sugerindo que todas as mensagens foram atribuídas aos consumidores.
-
-`Total de mensagens`: Soma das categorias anteriores (Ready + Unacked). No gráfico, o total é 59, refletindo o atraso na confirmação por parte dos consumidores.
-
-#### Gráfico de Taxa de Mensagens (Message rates last minute)
-Este gráfico detalha a frequência com que diferentes eventos ocorrem na fila queue_face:
-
-`Linha amarela ("Publish")`: Representa a taxa de publicação de novas mensagens pelo Producer. A taxa atual é de 2.6 mensagens por segundo.
-
-`Linha azul clara ("Deliver (manual ack)")`: Indica a taxa de entrega de mensagens aos consumidores. A taxa de entrega é também de 2.6 mensagens por segundo, o que coincide com a taxa de publicação.
-
-`Linha verde ("Consumer ack")`: Indica a confirmação (ack) de processamento das mensagens pelos consumidores. O ritmo é de 1.4 mensagens por segundo, o que significa que há um déficit de processamento, pois menos mensagens estão sendo confirmadas do que entregues.
-
-`Linha roxa ("Redelivered")`: Indica o número de mensagens que precisaram ser reenviadas aos consumidores. O valor é 0, sugerindo que não houve necessidade de reenvios.
 
 ### 🧠 Comportamento da IA – Consumer 1 (Face)
 
