@@ -155,31 +155,19 @@ Fila com consumidores conectados:
 ![Queues](https://github.com/euapariciocoelho1996/Trabalho-6-Sistemas-Distribuidos/blob/main/prints/queues.png)
 
 #### Explicação dos Campos
-`Virtual host (VHost)` – Identifica o ambiente ao qual a fila pertence. No RabbitMQ, os Virtual Hosts são usados para separar diferentes sistemas de mensagens. Nesta imagem, todas as filas pertencem ao "/" (vhost padrão).
+Publicar (Publish) 🟡 – Número de mensagens enviadas para a fila.
 
-`Name` – Nome da fila. Na imagem, temos queue_face e queue_time, indicando que uma gerencia mensagens relacionadas a faces e a outra a times.
+Entregar (manual ack) 🔵 – Mensagens entregues a consumidores que reconhecem manualmente.
 
-`Type` – Tipo da fila. Todas são do tipo "classic", que é o modo padrão do RabbitMQ.
+Entregar (auto ack) 🔴 – Mensagens entregues a consumidores com reconhecimento automático.
 
-`Features` – Indica recursos especiais da fila, como "mirroring" ou "priority queues". Neste caso, não há configurações extras.
+Reconhecimento do consumidor (Consumer ack) 🟢 – Mensagens que os consumidores confirmaram ter processado.
 
-`State` – Mostra o estado da fila. O indicador verde "running" significa que a fila está ativa e operacional.
+Reentregue (Redelivered) 🟣 – Mensagens reenviadas para consumidores após falhas ou não reconhecimento.
 
-`Messages` – Exibe três colunas de contagem de mensagens:
+Obter (auto ack) ⚫ – Mensagens recebidas automaticamente pelos consumidores.
 
-`Ready` – Mensagens disponíveis para consumo imediato (0 em ambas as filas).
-
-`Unacked` – Mensagens que foram entregues aos consumidores, mas ainda não foram confirmadas (ack). A fila queue_face tem 4, e queue_time tem 12, indicando processamento pendente.
-
-`Total` – Soma das mensagens Ready + Unacked (4 para queue_face, 12 para queue_time).
-
-`Message rates` – Taxas de mensagens em eventos específicos:
-
-`incoming` – Velocidade de mensagens chegando à fila (queue_face: 2.6 msg/s, queue_time: 2.2 msg/s).
-
-`deliver / get` – Taxa de mensagens entregues aos consumidores (queue_face: 2.6 msg/s, queue_time: 2.2 msg/s).
-
-`ack` – Taxa de confirmações (ack) feitas pelos consumidores (queue_face: 1.8 msg/s, queue_time: 2.0 msg/s).
+Obter (vazio) 🟠 – Tentativas de buscar mensagens na fila, mas sem sucesso.
 
 ### 📊 Overview de desempenho
 Visualização geral da troca de mensagens:
